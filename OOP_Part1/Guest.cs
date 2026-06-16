@@ -20,5 +20,17 @@ namespace OOP_Part1
             checkInDate = checkIn;
             this.totalNights = totalNights;
         }
+
+        public void DisplayGuest()
+        {
+            Console.WriteLine($"""
+                Guest ID: {guestId}
+                Guest Name: {guestName}
+                Room Number: {roomNumber}
+                Check-In Date: {checkInDate.ToString("dd-MMM-yyyy")}
+                Total Nights Booked: {totalNights}
+                """);
+        }
+
     }
 }
