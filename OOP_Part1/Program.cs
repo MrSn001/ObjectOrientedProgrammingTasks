@@ -7,6 +7,9 @@ internal class Program
         //Variables Declarations
         static int choice;
         static bool flag = true;
+        static int roomNumber;
+        static bool validationFlag;
+        static string roomType;
 
         //Collections Declarations
         static List<Room> rooms = new List<Room>();
@@ -55,6 +58,18 @@ internal class Program
         {
             return rooms.Any(r => r.roomNumber == roomNum);
         }
+        static void RoomTypeSubMenu()
+        {
+            Console.Write("""
+                Choose your Room Type: 
+                1. Single
+                2. Double
+                3. Suite
+                Enter your Number:
+                """);
+            choice = int.Parse(Console.ReadLine());
+        }
+       
         static bool CheckIfEmpty(string name)
         {
             if(name == "")
@@ -73,10 +88,33 @@ internal class Program
             return true;
         }
 
-        //static void AddNewRoom()
-        //{
-        //    Console.WriteLine("Enter");
-        //}
+        static void AddNewRoom()
+        {
+            Console.Write("Enter room Number: ");
+            try
+            {
+                roomNumber = int.Parse(Console.ReadLine());
+            }
+            catch (FormatException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error: " + ex.Message);
+                Console.ResetColor();
+                return;
+            }
+            if (CheckRoomExistence(roomNumber))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"{roomNumber} is already in exists!!");
+                Console.ResetColor();
+                return;
+            }
+
+            Console.WriteLine();
+
+
+            Console.WriteLine("hi");
+        }
 
         static void Main(string[] args)
         {
@@ -103,6 +141,7 @@ internal class Program
 
                     //Add New Room
                     case 1:
+                        AddNewRoom();
                         break;
 
                     //Register New Guest
