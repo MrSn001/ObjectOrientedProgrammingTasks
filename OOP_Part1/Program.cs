@@ -11,9 +11,12 @@ internal class Program
         static bool validationFlag = true;
         static string roomType;
         static double pricePerNight;
-        //static string guestName;
-        //static string checkInDate;
-        //static int numberOfNights;
+        static string guestName;
+        static string checkInDate;
+        static int numberOfNights;
+        static int nextNum;
+        static string genGuestID;
+        static string guestID;
 
         //Collections Declarations
         static List<Room> rooms = new List<Room>();
@@ -219,6 +222,98 @@ internal class Program
             Console.ResetColor();
         }
 
+
+        //Task 2 - Register New Guest
+        static string GenerateGuestID()
+        {
+            nextNum = guests.Count + 1;
+            genGuestID = $"G{nextNum:D3}";
+            return genGuestID;
+        }
+        static void RegisterNewGuest()
+        {
+            Console.Write("Enter guest name: ");
+            try
+            {
+                guestName = Console.ReadLine();
+            }
+            catch (FormatException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error: " + ex.Message);
+                Console.ResetColor();
+                return;
+            }
+            if (CheckIfEmpty(guestName))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Guest name can't be empty");
+                Console.ResetColor();
+                return;
+            }
+
+            Console.WriteLine("Enter the check-in date(dd/MM/yyyy): ");
+            try
+            {
+                checkInDate = Console.ReadLine();
+            }
+            catch (FormatException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error: " + ex.Message);
+                Console.ResetColor();
+                return;
+            }
+            if (CheckIfEmpty(checkInDate))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Check-in date can't be empty");
+                Console.ResetColor();
+                return;
+            }
+
+
+            Console.WriteLine("Enter number of nights: ");
+            try
+            {
+                numberOfNights = int.Parse(Console.ReadLine());
+            }
+            catch (FormatException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error: " + ex.Message);
+                Console.ResetColor();
+                return;
+            }
+            if (CheckIfZeroOrLess(numberOfNights))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Number of nights can't be zero or less");
+                Console.ResetColor();
+                return;
+            }
+
+            guestID = GenerateGuestID();
+
+            Guest g = new Guest(guestID,guestName,"Not Assigned",checkInDate,numberOfNights);
+
+            guests.Add(g);
+
+            Console.ForegroundColor = ConsoleColor.Green;
+
+            Console.WriteLine("""
+                ===========================================
+                      Guest Registered Successfully!!
+                ===========================================
+                """);
+            g.DisplayGuest();
+            Console.WriteLine($"""
+                ===========================================
+                """);
+
+        }
+
+
         static void Main(string[] args)
         {
 
@@ -264,6 +359,7 @@ internal class Program
 
                     //Register New Guest
                     case 2:
+                        RegisterNewGuest();
                         break;
 
                     //Book a Room for a Guest

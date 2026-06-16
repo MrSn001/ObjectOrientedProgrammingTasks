@@ -9,10 +9,10 @@ namespace OOP_Part1
         public string guestId { get; set; }
         public string guestName { get; set; }
         public string roomNumber { get; set; }
-        public DateOnly checkInDate { get; set; }
+        public string checkInDate { get; set; }
         public int totalNights { get; set; }
 
-        public Guest(string id, string name, string roomNum, DateOnly checkIn, int totalNights)
+        public Guest(string id, string name, string roomNum, string checkIn, int totalNights)
         {
             guestId = id;
             guestName = name;
@@ -27,7 +27,7 @@ namespace OOP_Part1
                 Guest ID: {guestId}
                 Guest Name: {guestName}
                 Room Number: {roomNumber}
-                Check-In Date: {checkInDate.ToString("dd-MMM-yyyy")}
+                Check-In Date: {checkInDate}
                 Total Nights Booked: {totalNights}
                 """);
         }
