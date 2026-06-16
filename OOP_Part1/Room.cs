@@ -6,10 +6,10 @@ namespace OOP_Part1
 {
     public class Room
     {
-        public int roomNumber;
-        public string roomType;
-        public double pricePerNight;
-        public bool isAvailable;
+        public int roomNumber {  get; set; }
+        public string roomType { get; set; }
+        public double pricePerNight { get; set; }
+        public bool isAvailable { get; set; }
 
         public Room(int roomNum, string Type, double price, bool availability)
         {
