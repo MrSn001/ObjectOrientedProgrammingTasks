@@ -18,7 +18,16 @@ namespace OOP_Part1
             isAvailable = availability;
         }
 
-        
+        public void DisplayRoom()
+        {
+            Console.WriteLine($"""
+                Room Number: {roomNumber}
+                Room Type: {roomType}
+                Price Per Night: {pricePerNight}
+                Status: {isAvailable}
+                """);
+        }
+
     }
 
     internal class Program
