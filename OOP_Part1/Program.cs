@@ -55,7 +55,22 @@ internal class Program
         {
             return rooms.Any(r => r.roomNumber == roomNum);
         }
+        static bool CheckIfEmpty(string name)
+        {
+            if(name == "")
+            {
+                return false;
+            }
+            return true;
+        }
+
         
+
+        //static void AddNewRoom()
+        //{
+        //    Console.WriteLine("Enter");
+        //}
+
         static void Main(string[] args)
         {
             
