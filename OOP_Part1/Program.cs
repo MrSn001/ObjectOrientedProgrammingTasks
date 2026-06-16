@@ -1,7 +1,25 @@
-﻿namespace OOP_Part1
+﻿using System.Security.Cryptography.X509Certificates;
+
+namespace OOP_Part1
 {
     
+    public class Room
+    {
+        public int roomNumber;
+        public string roomType;
+        public double pricePerNight;
+        public bool isAvailable;
 
+        public Room(int roomNum, string Type , double price , bool availability)
+        {
+            roomNumber = roomNum;
+            roomType = Type;
+            pricePerNight = price;
+            isAvailable = availability;
+        }
+
+        
+    }
 
     internal class Program
     {
@@ -39,7 +57,7 @@
             Console.WriteLine("0. Exit");
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("""
+            Console.Write("""
                 ================================================
                 Enter your choice:
                 """);
