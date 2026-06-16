@@ -10,6 +10,7 @@ internal class Program
         static int roomNumber;
         static bool validationFlag;
         static string roomType;
+        static double pricePerNight;
 
         //Collections Declarations
         static List<Room> rooms = new List<Room>();
@@ -67,7 +68,7 @@ internal class Program
                 3. Suite
                 Enter your Number:
                 """);
-            choice = int.Parse(Console.ReadLine());
+            
         }
         static void ChooseRoomType(int num)
         {
@@ -92,18 +93,27 @@ internal class Program
         {
             if(name == "")
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
         }
 
-        static bool CheckIfEmpty(int num)
+        static bool CheckIfZeroOrLess(int num)
         {
-            if (num == 0)
+            if (num <= 0)
             {
-                return false;
+                return true;
             }
-            return true;
+            return false;
+        }
+
+        static bool CheckIfZeroOrLess(double num)
+        {
+            if (num <= 0)
+            {
+                return true;
+            }
+            return false;
         }
 
         static void AddNewRoom()
@@ -123,15 +133,32 @@ internal class Program
             if (CheckRoomExistence(roomNumber))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"{roomNumber} is already in exists!!");
+                Console.WriteLine($"Room number {roomNumber} is already in exists!!");
                 Console.ResetColor();
                 return;
             }
 
-            Console.WriteLine();
+            if (CheckIfZeroOrLess(roomNumber))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"Room number can't be zero or less!!");
+                Console.ResetColor();
+                return;
+            }
 
+            RoomTypeSubMenu();
+            choice = int.Parse(Console.ReadLine());
+            ChooseRoomType(choice);
 
-            Console.WriteLine("hi");
+            Console.WriteLine("Please Enter the Price Per Night");
+            pricePerNight = double.Parse(Console.ReadLine());
+
+            if (CheckIfZeroOrLess(pricePerNight))
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Price can't be zero or less!!");
+                Console.ResetColor();
+            }
         }
 
         static void Main(string[] args)
