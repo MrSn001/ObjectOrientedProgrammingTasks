@@ -5,7 +5,9 @@
 
     internal class Program
     {
-        public void MainMenu()
+        static int choice;
+        static bool flag = true;
+        static void MainMenu()
         {
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("""
@@ -45,7 +47,73 @@
         }
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            while (flag)
+            {
+                MainMenu();
+                try
+                {
+                    choice = int.Parse(Console.ReadLine());
+                }
+                catch (FormatException ex)
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Error: " + ex.Message);
+                    Console.ResetColor();
+                    choice = -1;
+                }
+                
+                switch (choice)
+                {
+
+                    //Add New Room
+                    case 1:
+                        break;
+
+                    //Register New Guest
+                    case 2:
+                        break;
+
+                    //Book a Room for a Guest
+                    case 3:
+                        break;
+
+                    //Search & Filter Rooms
+                    case 4:
+                        break;
+
+                    //Guest & Booking Statistics
+                    case 5:
+                        break;
+
+                    //Check Out a Guest
+                    case 6:
+                        break;
+
+                    //Remove Unavailable Rooms
+                    case 7:
+                        break;
+
+                    //Exception error
+                    case -1:
+                        break;
+
+                    //Exit the system
+                    case 0:
+                        Console.WriteLine("Thank you for using our system");
+                        flag = false;
+                        break;
+
+                    default:
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Invalid Option");
+                        Console.ResetColor();
+                        break;
+                }
+
+                Console.WriteLine("Please Press Any Key to Continue....");
+                Console.ReadKey();
+                Console.Clear();
+            }
         }
     }
 }
