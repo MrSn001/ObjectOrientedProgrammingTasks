@@ -44,7 +44,7 @@ internal class Program
                 6. Check Out a Guest
                 7. Remove Unavailable Rooms
                 """);
-            
+
             Console.ResetColor();
             Console.WriteLine("0. Exit");
 
@@ -55,6 +55,31 @@ internal class Program
                 """);
             Console.ResetColor();
         }
+        static bool CheckIfEmpty(string name)
+        {
+            if (name == "")
+            {
+                return true;
+            }
+            return false;
+        }
+        static bool CheckIfZeroOrLess(int num)
+        {
+            if (num <= 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        static bool CheckIfZeroOrLess(double num)
+        {
+            if (num <= 0)
+            {
+                return true;
+            }
+            return false;
+        }
+        //Task 1 - Add New Room   
         static bool CheckRoomExistence(int roomNum)
         {
             return rooms.Any(r => r.roomNumber == roomNum);
@@ -90,34 +115,7 @@ internal class Program
                     validationFlag = false;
                     break;
             }
-        }
-        static bool CheckIfEmpty(string name)
-        {
-            if(name == "")
-            {
-                return true;
-            }
-            return false;
-        }
-
-        static bool CheckIfZeroOrLess(int num)
-        {
-            if (num <= 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
-        static bool CheckIfZeroOrLess(double num)
-        {
-            if (num <= 0)
-            {
-                return true;
-            }
-            return false;
-        }
-
+        }  
         static void AddNewRoom()
         {
             Console.Write("Enter room Number: ");
@@ -191,7 +189,7 @@ internal class Program
 
             Room r = new Room(roomNumber, roomType, pricePerNight, true);
             rooms.Add(r);
-            Console.ForegroundColor = ConsoleColor.Green;
+            Console.ForegroundColor = ConsoleColor.Green;     
             Console.WriteLine($"""
 
                 ===========================================
@@ -224,7 +222,8 @@ internal class Program
             //Room r4 = new Room(123, "Double", 30, true);
             //Room r5 = new Room(40, "Suite", 50, true);
             //Room r6 = new Room(18, "Single", 20, true);
-            //rooms.AddRange(r1,r2,r3,r4,r5,r6);        
+            //rooms.AddRange(r1,r2,r3,r4,r5,r6);
+            
             while (flag)
             {
                 MainMenu();
