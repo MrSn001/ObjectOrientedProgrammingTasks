@@ -4,8 +4,15 @@ namespace OOP_Part1
 {
 internal class Program
     {
+        //Variables Declarations
         static int choice;
         static bool flag = true;
+
+        //Collections Declarations
+        static List<Room> rooms = new List<Room>();
+        static List<Guest> guests = new List<Guest>();
+
+        //Methods Declarations
         static void MainMenu()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -44,8 +51,16 @@ internal class Program
                 """);
             Console.ResetColor();
         }
+        static bool CheckRoomExistence(int roomNum)
+        {
+            return rooms.Any(r => r.roomNumber == roomNum);
+        }
+        
         static void Main(string[] args)
         {
+            
+            
+
             while (flag)
             {
                 MainMenu();
