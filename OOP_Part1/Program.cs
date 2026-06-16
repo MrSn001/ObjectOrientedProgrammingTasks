@@ -8,7 +8,7 @@ internal class Program
         static int choice;
         static bool flag = true;
         static int roomNumber;
-        static bool validationFlag;
+        static bool validationFlag = true;
         static string roomType;
         static double pricePerNight;
 
@@ -84,7 +84,9 @@ internal class Program
                     roomType = "Suite";
                     break;
                 default:
+                    Console.ForegroundColor = ConsoleColor.Red;
                     Console.WriteLine("Invalid Option");
+                    Console.ResetColor();
                     validationFlag = false;
                     break;
             }
@@ -147,25 +149,82 @@ internal class Program
             }
 
             RoomTypeSubMenu();
-            choice = int.Parse(Console.ReadLine());
+            try
+            {
+                choice = int.Parse(Console.ReadLine());
+            }
+            catch (FormatException ex)
+
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error: " + ex.Message);
+                Console.ResetColor();
+                return;
+            }
             ChooseRoomType(choice);
 
-            Console.WriteLine("Please Enter the Price Per Night");
-            pricePerNight = double.Parse(Console.ReadLine());
+            if (!validationFlag)
+            {
+                validationFlag = true;
+                return;
+            }
 
+            Console.Write("Please Enter the Price Per Night: ");
+            try
+            {
+                pricePerNight = double.Parse(Console.ReadLine());
+            }
+            catch (FormatException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error: " + ex.Message);
+                Console.ResetColor();
+                return;
+            }
             if (CheckIfZeroOrLess(pricePerNight))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine("Price can't be zero or less!!");
                 Console.ResetColor();
+                return;
             }
+
+            Room r = new Room(roomNumber, roomType, pricePerNight, true);
+            rooms.Add(r);
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.WriteLine($"""
+
+                ===========================================
+                Room Added Successfully!!
+                ===========================================
+                Room Number: {roomNumber} 
+                Room Type: {roomType}
+                Price Per Night: {pricePerNight}
+                ===========================================
+                Total room Registered: {rooms.Count}
+                """);
+            Console.ResetColor();
         }
 
         static void Main(string[] args)
         {
-            
-            
 
+            rooms.AddRange(
+                new Room(12, "Single", 20, true),
+                new Room(13, "Double", 30, true),
+                new Room(122, "Single", 20, true),
+                new Room(123, "Double", 30, true),
+                new Room(40, "Suite", 50, true),
+                new Room(18, "Single", 20, true)
+                );
+
+            //Room r1 = new Room(12,"Single",20,true);
+            //Room r2 = new Room(13, "Double", 30, true);
+            //Room r3 = new Room(122, "Single", 20, true);
+            //Room r4 = new Room(123, "Double", 30, true);
+            //Room r5 = new Room(40, "Suite", 50, true);
+            //Room r6 = new Room(18, "Single", 20, true);
+            //rooms.AddRange(r1,r2,r3,r4,r5,r6);        
             while (flag)
             {
                 MainMenu();
