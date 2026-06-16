@@ -64,7 +64,14 @@ internal class Program
             return true;
         }
 
-        
+        static bool CheckIfEmpty(int num)
+        {
+            if (num == 0)
+            {
+                return false;
+            }
+            return true;
+        }
 
         //static void AddNewRoom()
         //{
