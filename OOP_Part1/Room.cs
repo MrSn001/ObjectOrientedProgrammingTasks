@@ -25,7 +25,7 @@ namespace OOP_Part1
                 Room Number: {roomNumber}
                 Room Type: {roomType}
                 Price Per Night: {pricePerNight}
-                Status: {isAvailable}
+                Status: {(isAvailable ? "Available" : "Not Available")}
                 """);
         }
     }

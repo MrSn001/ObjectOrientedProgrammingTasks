@@ -189,18 +189,30 @@ internal class Program
 
             Room r = new Room(roomNumber, roomType, pricePerNight, true);
             rooms.Add(r);
-            Console.ForegroundColor = ConsoleColor.Green;     
-            Console.WriteLine($"""
+            Console.ForegroundColor = ConsoleColor.Green;
 
+            Console.WriteLine("""
                 ===========================================
-                Room Added Successfully!!
+                          Room Added Successfully!!
                 ===========================================
-                Room Number: {roomNumber} 
-                Room Type: {roomType}
-                Price Per Night: {pricePerNight}
+                """);
+            r.DisplayRoom();
+
+            Console.WriteLine($"""
                 ===========================================
                 Total room Registered: {rooms.Count}
                 """);
+            //Console.WriteLine($"""
+
+            //    ===========================================
+            //    Room Added Successfully!!
+            //    ===========================================
+            //    Room Number: {roomNumber} 
+            //    Room Type: {roomType}
+            //    Price Per Night: {pricePerNight}
+            //    ===========================================
+            //    Total room Registered: {rooms.Count}
+            //    """);
             Console.ResetColor();
         }
 
