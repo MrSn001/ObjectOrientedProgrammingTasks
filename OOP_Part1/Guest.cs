@@ -8,11 +8,11 @@ namespace OOP_Part1
     {
         public string guestId { get; set; }
         public string guestName { get; set; }
-        public int roomNumber { get; set; }
+        public string roomNumber { get; set; }
         public DateOnly checkInDate { get; set; }
         public int totalNights { get; set; }
 
-        public Guest(string id, string name, int roomNum, DateOnly checkIn, int totalNights)
+        public Guest(string id, string name, string roomNum, DateOnly checkIn, int totalNights)
         {
             guestId = id;
             guestName = name;

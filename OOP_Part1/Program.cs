@@ -11,6 +11,9 @@ internal class Program
         static bool validationFlag = true;
         static string roomType;
         static double pricePerNight;
+        //static string guestName;
+        //static string checkInDate;
+        //static int numberOfNights;
 
         //Collections Declarations
         static List<Room> rooms = new List<Room>();
