@@ -32,5 +32,9 @@ namespace OOP_Part1
                 """);
         }
 
+        public double CalculateTotalCost(double pricePerNight)
+        {
+            return pricePerNight * totalNights;
+        }
     }
 }
