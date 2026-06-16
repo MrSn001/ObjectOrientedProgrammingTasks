@@ -6,7 +6,7 @@ namespace OOP_Part1
 {
     public class Guest
     {
-        public int guestId { get; set; }
+        public string guestId { get; set; }
         public string guestName { get; set; }
         public int roomNumber { get; set; }
         public DateOnly checkInDate { get; set; }
