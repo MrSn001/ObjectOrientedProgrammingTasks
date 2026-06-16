@@ -69,7 +69,25 @@ internal class Program
                 """);
             choice = int.Parse(Console.ReadLine());
         }
-       
+        static void ChooseRoomType(int num)
+        {
+            switch (num)
+            {
+                case 1:
+                    roomType = "Single";
+                    break;
+                case 2:
+                    roomType = "Double";
+                    break;
+                case 3:
+                    roomType = "Suite";
+                    break;
+                default:
+                    Console.WriteLine("Invalid Option");
+                    validationFlag = false;
+                    break;
+            }
+        }
         static bool CheckIfEmpty(string name)
         {
             if(name == "")
