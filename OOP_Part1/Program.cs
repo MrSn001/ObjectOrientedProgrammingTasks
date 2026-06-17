@@ -321,6 +321,7 @@ internal class Program
                 Console.ForegroundColor= ConsoleColor.Red;
                 Console.WriteLine($"The guest ID {guestID} is not found");
                 Console.ResetColor();
+                validationFlag = false;
                 return;
             }
             guestId = guestID;
@@ -333,10 +334,14 @@ internal class Program
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"The room number {roomNum} is not found");
                 Console.ResetColor();
+                validationFlag = false;
                 return;
+                
             }
             roomNumber = roomNum;
         }
+
+
 
         static void Main(string[] args)
         {
