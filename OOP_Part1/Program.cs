@@ -326,6 +326,18 @@ internal class Program
             guestId = guestID;
         }
 
+        static void FindRoomNumber(int roomNum)
+        {
+            if (rooms.FirstOrDefault(g => g.roomNumber == roomNum) == null)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($"The room number {roomNum} is not found");
+                Console.ResetColor();
+                return;
+            }
+            roomNumber = roomNum;
+        }
+
         static void Main(string[] args)
         {
 
