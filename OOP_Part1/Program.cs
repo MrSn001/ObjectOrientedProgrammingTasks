@@ -16,7 +16,7 @@ internal class Program
         static int numberOfNights;
         static int nextNum;
         static string genGuestID;
-        static string guestID;
+        static string guestId;
 
         //Collections Declarations
         static List<Room> rooms = new List<Room>();
@@ -293,9 +293,9 @@ internal class Program
                 return;
             }
 
-            guestID = GenerateGuestID();
+            guestId = GenerateGuestID();
 
-            Guest g = new Guest(guestID,guestName,"Not Assigned",checkInDate,numberOfNights);
+            Guest g = new Guest(guestId,guestName,"Not Assigned",checkInDate,numberOfNights);
 
             guests.Add(g);
 
@@ -313,6 +313,18 @@ internal class Program
 
         }
 
+        //Task 3 - Book a Room for a Guest
+        static void FindGuestID(string guestID)
+        {
+           if( guests.FirstOrDefault(g => g.guestId == guestID) == null)
+            {
+                Console.ForegroundColor= ConsoleColor.Red;
+                Console.WriteLine($"The guest ID {guestID} is not found");
+                Console.ResetColor();
+                return;
+            }
+            guestId = guestID;
+        }
 
         static void Main(string[] args)
         {
