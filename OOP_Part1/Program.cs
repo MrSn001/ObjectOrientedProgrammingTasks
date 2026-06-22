@@ -553,7 +553,10 @@ internal class Program
         }
 
         //Task 5 - Guest & Booking Statistics
-        //static void Display
+        static List<Guest> CheckRegisteredGuestsWhoHaveARoomAssigned()
+        {
+            return guests.Where(g => g.roomNumber != "Not Assigned").ToList();
+        }
 
         static void Main(string[] args)
         {
@@ -615,6 +618,8 @@ internal class Program
 
                     //Guest & Booking Statistics
                     case 5:
+                        Console.WriteLine("Total Registered Guests: " + guests.Count);
+                        Console.WriteLine("Total Guests Who Currently Have a Room Assigned: " + CheckRegisteredGuestsWhoHaveARoomAssigned().Count);
                         break;
 
                     //Check Out a Guest
