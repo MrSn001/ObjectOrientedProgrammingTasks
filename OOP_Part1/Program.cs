@@ -19,10 +19,10 @@ internal class Program
         static string guestId;
         static Room targetRoom;
         static Guest targetGuest;
-
         //Collections Declarations
         static List<Room> rooms = new List<Room>();
         static List<Guest> guests = new List<Guest>();
+        static List<Room> roomFilter = new List<Room>();
 
         //Methods Declarations
         static void MainMenu()
@@ -427,7 +427,13 @@ internal class Program
             switch (num)
             {
                 case 1:
-                    
+                    roomFilter = rooms.Where(r => r.isAvailable == true).OrderBy(r => r.pricePerNight).ToList();
+                    Console.WriteLine("Available Rooms: ");
+                    foreach(Room room in roomFilter)
+                    {
+                        Console.WriteLine($"Room Number: {room.roomNumber} | Room Type: {room.roomType} | Price Per Night: {room.pricePerNight} ");
+                    }
+                    Console.WriteLine("Total of Available Rooms: " + roomFilter.Count);
                     break;
                 case 2:
                     
@@ -457,6 +463,7 @@ internal class Program
             SearchAndFilterSubMenu();
             choice = int.Parse( Console.ReadLine() );
             SearchAndFilterSwitch(choice);
+
         }
 
 
@@ -515,6 +522,7 @@ internal class Program
 
                     //Search & Filter Rooms
                     case 4:
+                        SearchAndFilter();
                         break;
 
                     //Guest & Booking Statistics
