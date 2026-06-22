@@ -557,6 +557,11 @@ internal class Program
         {
             return guests.Where(g => g.roomNumber != "Not Assigned").ToList();
         }
+        
+        static List<Room> CheckBookedRooms()
+        {
+            return rooms.Where(r => r.isAvailable == false).ToList();
+        }
 
         static void Main(string[] args)
         {
@@ -620,6 +625,8 @@ internal class Program
                     case 5:
                         Console.WriteLine("Total Registered Guests: " + guests.Count);
                         Console.WriteLine("Total Guests Who Currently Have a Room Assigned: " + CheckRegisteredGuestsWhoHaveARoomAssigned().Count);
+                        Console.WriteLine("Total Number of Rooms: " + rooms.Count);
+                        Console.WriteLine("Total Number of Booked Rooms: " + CheckBookedRooms().Count);
                         break;
 
                     //Check Out a Guest
