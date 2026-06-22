@@ -27,7 +27,7 @@ internal class Program
         static List<Room> rooms = new List<Room>();
         static List<Guest> guests = new List<Guest>();
         static List<Room> roomFilter = new List<Room>();
-        static List<Guest> highestSpends = new List<Guest>();
+        static List<string> guestSummaries = new List<string>();
 
         //Methods Declarations
         static void MainMenu()
@@ -574,7 +574,6 @@ internal class Program
             
             return avgNumberOfNights;
         }
-
         static void TopThreeHighestSpendingGuests()
         {
             List<Guest> topSpendingGuests = guests.OrderByDescending(g => g.CalculateTotalCost(rooms)).Take(3).ToList();
@@ -584,6 +583,35 @@ internal class Program
                 Console.WriteLine($"{guest.guestName} — Room {guest.roomNumber} — OMR {totalCost:F2}");
             }
         }
+
+        static void SummaryLinePerBookedGuest()
+        {
+            guestSummaries = guests
+   .Where(g => g.roomNumber != "Not Assigned")
+   .Select(g => $"{g.guestName} — Room {g.roomNumber} — {g.totalNights} nights — OMR {g.CalculateTotalCost(rooms):F2}").ToList();
+
+
+            if (!guestSummaries.Any())
+            {
+                Console.WriteLine("No active bookings recorded.");
+            }
+            else
+            {
+                Console.WriteLine("""
+                    ============================================
+                                   Booking Summary
+                    ============================================
+
+                    """);
+                foreach (var summary in guestSummaries)
+                {
+                    Console.WriteLine(summary);
+                }
+                Console.WriteLine("============================================");
+
+            }
+        }
+
         static void Main(string[] args)
         {
 
@@ -650,6 +678,7 @@ internal class Program
                         Console.WriteLine("Total Number of Booked Rooms: " + CheckBookedRooms().Count);
                         Console.WriteLine("Average Number Of Nights for the Assigned room: " + AverageNumberOfNightsForBookedRooms());
                         TopThreeHighestSpendingGuests();
+                        SummaryLinePerBookedGuest();
                         break;
 
                     //Check Out a Guest
