@@ -27,6 +27,7 @@ internal class Program
         static List<Room> rooms = new List<Room>();
         static List<Guest> guests = new List<Guest>();
         static List<Room> roomFilter = new List<Room>();
+        static List<Guest> highestSpends = new List<Guest>();
 
         //Methods Declarations
         static void MainMenu()
@@ -639,6 +640,7 @@ internal class Program
                         Console.WriteLine("Total Number of Rooms: " + rooms.Count);
                         Console.WriteLine("Total Number of Booked Rooms: " + CheckBookedRooms().Count);
                         Console.WriteLine("Average Number Of Nights for the Assigned room: " + AverageNumberOfNightsForBookedRooms());
+                        TopThreeHighestSpendingGuests();
                         break;
 
                     //Check Out a Guest

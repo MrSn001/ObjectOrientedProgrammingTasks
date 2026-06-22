@@ -32,9 +32,15 @@ namespace OOP_Part1
                 """);
         }
 
-        public double CalculateTotalCost(double pricePerNight)
+        public double CalculateTotalCost(List<Room> roomsList)
         {
-            return pricePerNight * totalNights;
+            Room matchingRoom = roomsList.Find(r => r.roomNumber.ToString() == this.roomNumber);
+            if (matchingRoom != null)
+            {
+                return matchingRoom.pricePerNight * this.totalNights;
+            }
+
+            return 0.0;
         }
     }
 }
