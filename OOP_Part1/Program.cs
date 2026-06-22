@@ -575,6 +575,15 @@ internal class Program
             return avgNumberOfNights;
         }
 
+        static void TopThreeHighestSpendingGuests()
+        {
+            List<Guest> topSpendingGuests = guests.OrderByDescending(g => g.CalculateTotalCost(rooms)).Take(3).ToList();
+            foreach (var guest in topSpendingGuests)
+            {
+                double totalCost = guest.CalculateTotalCost(rooms);
+                Console.WriteLine($"{guest.guestName} — Room {guest.roomNumber} — OMR {totalCost:F2}");
+            }
+        }
         static void Main(string[] args)
         {
 
