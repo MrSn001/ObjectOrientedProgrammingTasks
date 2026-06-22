@@ -433,12 +433,16 @@ internal class Program
 
         }
 
+        static List<Room> ChcekAvailableRooms()
+        {
+            return rooms.Where(r => r.isAvailable == true).OrderBy(r => r.pricePerNight).ToList();
+        }
         static void SearchAndFilterSwitch(int num)
         {
             switch (num)
             {
                 case 1:
-                    roomFilter = rooms.Where(r => r.isAvailable == true).OrderBy(r => r.pricePerNight).ToList();
+                    roomFilter = ChcekAvailableRooms();
                     Console.WriteLine("Available Rooms: ");
                     foreach(Room room in roomFilter)
                     {
@@ -549,6 +553,8 @@ internal class Program
         }
 
         //Task 5 - Guest & Booking Statistics
+        //static void Display
+
         static void Main(string[] args)
         {
 
