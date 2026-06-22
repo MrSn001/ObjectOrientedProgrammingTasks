@@ -436,7 +436,41 @@ internal class Program
                     Console.WriteLine("Total of Available Rooms: " + roomFilter.Count);
                     break;
                 case 2:
+                    Console.Write("Enter Room Type: ");
+                    try
+                    {
+                        roomType = Console.ReadLine().ToLower();
+                    }
+                    catch(FormatException ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Error: " + ex.Message);
+                        Console.ResetColor();
+                        break;
+                    }
                     
+                    if(roomType != "single" && roomType != "double" && roomType != "suite")
+                    {
+                        Console.ForegroundColor= ConsoleColor.Red;
+                        Console.WriteLine($"There is no {roomType} type room!!");
+                        Console.ResetColor();
+                        break;
+                    }
+
+                    if (!rooms.Any(r => r.roomType.ToLower() == roomType))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine($"There is no Room with the {roomType} Type!!");
+                        Console.ResetColor();
+                        break;
+                    }
+
+                    roomFilter = rooms.Where(r => r.roomType.ToLower() == roomType).ToList();
+                    foreach (Room room in roomFilter)
+                    {
+                        Console.WriteLine($"Room Number: {room.roomNumber} | Room Type: {room.roomType} | Price Per Night: {room.pricePerNight} ");
+                    }
+                    Console.WriteLine($"Total of {roomType} Rooms: " + roomFilter.Count);
                     break;
                 case 3:
                     
