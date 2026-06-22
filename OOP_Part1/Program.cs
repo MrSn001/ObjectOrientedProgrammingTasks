@@ -422,11 +422,41 @@ internal class Program
 
         }
 
+        static void SearchAndFilterSwitch(int num)
+        {
+            switch (num)
+            {
+                case 1:
+                    
+                    break;
+                case 2:
+                    
+                    break;
+                case 3:
+                    
+                    break;
+                case 4:
+
+                    break;
+                case 0:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Search Cancelled!!");
+                    Console.ResetColor();
+                    break;
+                default:
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.WriteLine("Invalid Option");
+                    Console.ResetColor();
+                    validationFlag = false;
+                    break;
+            }
+        }
+
         static void SearchAndFilter()
         {
             SearchAndFilterSubMenu();
             choice = int.Parse( Console.ReadLine() );
-
+            SearchAndFilterSwitch(choice);
         }
 
 
