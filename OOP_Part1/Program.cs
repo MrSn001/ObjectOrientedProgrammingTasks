@@ -17,6 +17,8 @@ internal class Program
         static int nextNum;
         static string genGuestID;
         static string guestId;
+        static Room targetRoom;
+        static Guest targetGuest;
 
         //Collections Declarations
         static List<Room> rooms = new List<Room>();
@@ -324,12 +326,12 @@ internal class Program
                 validationFlag = false;
                 return;
             }
-            guestId = guestID;
+            targetGuest = guests.FirstOrDefault(g => g.guestId == guestID);
         }
 
         static void FindRoomNumber(int roomNum)
         {
-            if (rooms.FirstOrDefault(g => g.roomNumber == roomNum) == null)
+            if (!rooms.Any(r => r.roomNumber == roomNum))
             {
                 Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"The room number {roomNum} is not found");
@@ -338,7 +340,71 @@ internal class Program
                 return;
                 
             }
-            roomNumber = roomNum;
+            targetRoom = rooms.FirstOrDefault(g => g.roomNumber == roomNum);
+           
+
+        }
+
+        static double CalculateTotalCost(int totalNights,double pricePerNight)
+        {
+            return (totalNights * pricePerNight);
+        }
+        
+        static void BookRoom()
+        {
+            Console.Write("Enter Guest ID: ");
+            try
+            {
+                guestId = Console.ReadLine();
+            }
+            catch (FormatException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error: " + ex.Message);
+                Console.ResetColor();
+                return;
+            }
+            FindGuestID(guestId);
+            if (!validationFlag)
+            {
+                validationFlag = true;
+                return;
+            }
+
+            Console.Write("Enter Room Number: ");
+            try
+            {
+                roomNumber = int.Parse(Console.ReadLine());
+            }
+            catch (FormatException ex)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Error: " + ex.Message);
+                Console.ResetColor();
+                return;
+            }
+            FindRoomNumber(roomNumber);
+            if (!validationFlag)
+            {
+                validationFlag = true;
+                return;
+            }
+            if (!targetRoom.isAvailable)
+            {
+                Console.WriteLine("Room is already booked.");
+                return;
+            }
+            
+            targetRoom.isAvailable = false;
+            targetGuest.roomNumber = targetRoom.roomNumber.ToString();
+            double totalPrice = CalculateTotalCost(targetGuest.totalNights, targetRoom.pricePerNight);
+
+            Console.ForegroundColor= ConsoleColor.Green;
+            Console.WriteLine("Room Booked Successfully!!");
+            Console.Write($"Guest Name: {targetGuest.guestName} | Room Number: {targetGuest.roomNumber} | Room Type: {targetRoom.roomType}");
+            Console.WriteLine($" | Price Per Night: {targetRoom.pricePerNight} | Total Nights: {targetGuest.totalNights} | Total Cost: {totalPrice}");
+            Console.ResetColor();
+
         }
 
 
@@ -393,6 +459,7 @@ internal class Program
 
                     //Book a Room for a Guest
                     case 3:
+                        BookRoom();
                         break;
 
                     //Search & Filter Rooms
