@@ -19,6 +19,10 @@ internal class Program
         static string guestId;
         static Room targetRoom;
         static Guest targetGuest;
+        static int roomCount;
+        static double avgPrice;
+        static double maxPrice;
+        static double minPrice;
         //Collections Declarations
         static List<Room> rooms = new List<Room>();
         static List<Guest> guests = new List<Guest>();
@@ -503,7 +507,17 @@ internal class Program
                     Console.WriteLine($"Total rooms that are equal to or less than {pricePerNight} are: " + roomFilter.Count);
                     break;
                 case 4:
+                    Console.WriteLine("");
+                    avgPrice = rooms.Average(r => r.pricePerNight);
+                    maxPrice = rooms.Max(r => r.pricePerNight);
+                    minPrice = rooms.Min(r => r.pricePerNight);
 
+                    Console.WriteLine("Total Rooms Count: " + rooms.Count);
+                    roomFilter = rooms.Where(r => r.isAvailable == true).ToList();
+                    Console.WriteLine("Total Available Rooms Count: " + roomFilter.Count);
+                    Console.WriteLine("Average Price: " + avgPrice);
+                    Console.WriteLine("Maximum Price: " + maxPrice);
+                    Console.WriteLine("Minimum Price: " + minPrice);
                     break;
                 case 0:
                     Console.ForegroundColor = ConsoleColor.Red;
