@@ -473,7 +473,34 @@ internal class Program
                     Console.WriteLine($"Total of {roomType} Rooms: " + roomFilter.Count);
                     break;
                 case 3:
-                    
+                    Console.Write("Enter your maximum price: ");
+                    try
+                    {
+                        pricePerNight = Double.Parse(Console.ReadLine());
+                    }
+                    catch(FormatException ex)
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Error: " + ex.Message);
+                        Console.ResetColor();
+                        break;
+                    }
+
+                    if (CheckIfZeroOrLess(pricePerNight))
+                    {
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.WriteLine("Price Can't be zero or negative!!");
+                        Console.ResetColor();
+                        break;
+                    }
+
+                    roomFilter = rooms.Where(r => r.pricePerNight <= pricePerNight).OrderBy(r => r.pricePerNight).ToList();
+
+                    foreach (Room room in roomFilter)
+                    {
+                        Console.WriteLine($"Room Number: {room.roomNumber} | Room Type: {room.roomType} | Price Per Night: {room.pricePerNight} ");
+                    }
+                    Console.WriteLine($"Total rooms that are equal to or less than {pricePerNight} are: " + roomFilter.Count);
                     break;
                 case 4:
 
