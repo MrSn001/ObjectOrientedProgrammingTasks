@@ -356,6 +356,13 @@ internal class Program
         
         static void BookRoom()
         {
+            if(guests.Count == 0)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("There is no Registered Guest!!");
+                Console.ResetColor();
+                return;
+            }
             Console.Write("Enter Guest ID: ");
             try
             {
@@ -541,7 +548,7 @@ internal class Program
 
         }
 
-
+        //Task 5 - Guest & Booking Statistics
         static void Main(string[] args)
         {
 
