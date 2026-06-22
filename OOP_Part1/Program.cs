@@ -407,6 +407,27 @@ internal class Program
 
         }
 
+        //Task 4 - Search & Filter Rooms
+        static void SearchAndFilterSubMenu()
+        {
+            Console.Write("""
+                Choose your Search and Filter Type: 
+                1. Show all available rooms.
+                2. Filter by room type.
+                3. Filter by max price.
+                4. Room price statistics.
+                0. Back.
+                Enter your Number:
+                """);
+
+        }
+
+        static void SearchAndFilter()
+        {
+            SearchAndFilterSubMenu();
+            choice = int.Parse( Console.ReadLine() );
+
+        }
 
 
         static void Main(string[] args)
