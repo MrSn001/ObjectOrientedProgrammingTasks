@@ -19,10 +19,10 @@ internal class Program
         static string guestId;
         static Room targetRoom;
         static Guest targetGuest;
-        static int roomCount;
         static double avgPrice;
         static double maxPrice;
         static double minPrice;
+        static double avgNumberOfNights;
         //Collections Declarations
         static List<Room> rooms = new List<Room>();
         static List<Guest> guests = new List<Guest>();
@@ -563,6 +563,17 @@ internal class Program
             return rooms.Where(r => r.isAvailable == false).ToList();
         }
 
+        static double AverageNumberOfNightsForBookedRooms()
+        {
+            if (!guests.Any(g => g.roomNumber != "Not Assigned"))
+            {
+                return 0;
+            }
+            avgNumberOfNights = guests.Where(g => g.roomNumber != "Not Assigned").Average(g => g.totalNights);
+            
+            return avgNumberOfNights;
+        }
+
         static void Main(string[] args)
         {
 
@@ -627,6 +638,7 @@ internal class Program
                         Console.WriteLine("Total Guests Who Currently Have a Room Assigned: " + CheckRegisteredGuestsWhoHaveARoomAssigned().Count);
                         Console.WriteLine("Total Number of Rooms: " + rooms.Count);
                         Console.WriteLine("Total Number of Booked Rooms: " + CheckBookedRooms().Count);
+                        Console.WriteLine("Average Number Of Nights for the Assigned room: " + AverageNumberOfNightsForBookedRooms());
                         break;
 
                     //Check Out a Guest
